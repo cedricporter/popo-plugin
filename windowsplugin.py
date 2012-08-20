@@ -1,5 +1,9 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-  
+# author:  Hua Liang [ Stupid ET ]
+# email:   et@everet.org
+# website: http://EverET.org
+# 
 
 import time, httplib, urllib
 from pprint import pprint
