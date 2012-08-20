@@ -10,7 +10,7 @@ from pprint import pprint
 import win32gui
 
 LINUX_HOST = "10.0.2.2"
-PORT = 8888
+PORT = 34567
 
 def find_windows(class_name):
     hwnds = []
