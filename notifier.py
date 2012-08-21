@@ -8,14 +8,25 @@
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
-import pynotify
+try:
+    import pynotify
+    def ShowNotification(title, msg):
+        n = pynotify.Notification ("主人，您有了新的泡泡消息", title)
+        n.show()
+
+except:
+    def ShowNotification(title, msg):
+        knotify = dbus.SessionBus().et_object("org.kde.knotify", "/Notify")
+        id = knotify.event("warning", "kde", [], title, msg, [], [], 0, 0, dbus_interface="org.kde.KNotify")
+        time.sleep(3)
+        knotify.closeNotification(id)
+
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         title = self.get_argument('title')
-        print title
-        n = pynotify.Notification ("主人，您有了新的泡泡消息", title)
-        n.show()
+        # print title
+        ShowNotification("主人，您有了新的泡泡消息", title)
 
 settings = {
     'debug': True,
