@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-  
 # author:  Hua Liang [ Stupid ET ]
 # email:   et@everet.org
@@ -12,16 +12,15 @@ import win32gui
 LINUX_HOST = "10.0.2.2"
 PORT = 34567
 
-def find_windows(class_name):
+def find_windows(class_name, window_name=None):
     hwnds = []
-    print class_name
     try:
-        hwnd = win32gui.FindWindow(class_name, None) 
+        hwnd = win32gui.FindWindow(class_name, window_name) 
     except:
         return hwnds 
     while hwnd:
         hwnds.append(hwnd) 
-        hwnd = win32gui.FindWindowEx(None, hwnd, class_name, None)
+        hwnd = win32gui.FindWindowEx(None, hwnd, class_name, window_name)
     return hwnds
 
 def print_hwnds(hwnds):
@@ -38,13 +37,18 @@ def notify_linux(host, title, port=80):
 
 last_hwnds = set()
 while True: 
-    names = ["SessionForm",
+    class_names = ["SessionForm",
             "TeamForm", ]
+    window_names = [u"提示",
+            u"兴趣组提示",]
 
     print '-' * 40
     hwnds = set()
-    for name in names:
-        hwnds |= set(find_windows(name))
+    for name in class_names:
+       hwnds |= set(find_windows(name))
+    for name in window_names:
+        hwnds |= set(find_windows(None, name.encode('gbk')))
+
 
     print_hwnds(hwnds)
 
