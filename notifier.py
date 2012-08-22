@@ -17,6 +17,7 @@ class MainHandler(tornado.web.RequestHandler):
         print title
         Hello = Notify.Notification.new("主人，您有了新的泡泡消息", title, "dialog-information")
         Hello.show()
+        self.write(title)
 
 settings = {
     'debug': True,
