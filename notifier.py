@@ -14,7 +14,6 @@ from gi.repository import Notify
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         title = self.get_argument('title')
-        print title
         Hello = Notify.Notification.new("主人，您有了新的泡泡消息", title, "dialog-information")
         Hello.show()
         self.write(title)

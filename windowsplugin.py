@@ -7,7 +7,7 @@
 
 import time, httplib, urllib
 from pprint import pprint
-import win32gui
+import win32gui, traceback
 
 LINUX_HOST = "10.0.2.2"
 PORT = 34567
@@ -28,12 +28,15 @@ def print_hwnds(hwnds):
         print 'hwnd:', hwnd, 'title:', win32gui.GetWindowText(hwnd)
 
 def notify_linux(host, title, port=80): 
-    title = title.encode('utf8')
-    conn = httplib.HTTPConnection(host, port)
-    query = {'title':title,} 
-    url = '/' + "?" + urllib.urlencode(query)
-    conn.request('GET', url)
-    return conn.getresponse() 
+    try:
+        title = title.encode('utf8')
+        conn = httplib.HTTPConnection(host, port)
+        query = {'title':title,} 
+        url = '/' + "?" + urllib.urlencode(query)
+        conn.request('GET', url)
+        return conn.getresponse() 
+    except:
+        traceback.print_exc()
 
 last_hwnds = set()
 while True: 
@@ -49,15 +52,14 @@ while True:
     for name in window_names:
         hwnds |= set(find_windows(None, name.encode('gbk')))
 
-
-    print_hwnds(hwnds)
-
     need_notifies = hwnds - last_hwnds
+    print_hwnds(need_notifies)
 
     for hwnd in need_notifies:
         title = win32gui.GetWindowText(hwnd)
         print hwnd, title
-        notify_linux(LINUX_HOST, title.decode('gbk'), port=PORT)
+        rep = notify_linux(LINUX_HOST, title.decode('gbk'), port=PORT)
+        print rep.read().decode('utf8').encode('gbk')
 
     last_hwnds = hwnds
 
