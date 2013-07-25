@@ -3,7 +3,7 @@ popo-plugin
 
 Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 
-使用方法：
+## 使用方法
 
 1.在linux下运行 python notifier.py
 
@@ -14,3 +14,7 @@ Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 4.修改windowsplugin.py文件，将LINUX_HOST后的ip地址改为你本机linux的ip地址
 
 5.双击运行windowsplugin.py
+
+
+## Tips
+Linux下的依赖项: libnotify, python-gobject
