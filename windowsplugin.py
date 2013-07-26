@@ -27,6 +27,8 @@ import ctypes
 LINUX_HOST = "10.0.2.2"
 PORT = 34567
 
+from flash import flash
+
 
 def find_windows(class_name, window_name=None):
     hwnds = []
@@ -46,6 +48,7 @@ def print_hwnds(hwnds):
 
 
 def notify_linux(host, title, port=80):
+    """Notify by access http://host/?title=[msg]"""
     try:
         title = title.encode('utf8')
         conn = httplib.HTTPConnection(host, port)
@@ -84,6 +87,7 @@ def main():
                 print hwnd, title
                 rep = notify_linux(LINUX_HOST, title.decode('gbk'), port=PORT)
                 print rep.read().decode('utf8').encode('gbk')
+                flash(hwnd)
                 continue
             elif class_name == "TeamForm":   # for group
                 if title.decode('gbk') in allow_team_names:
