@@ -22,6 +22,7 @@ import urllib
 import traceback
 from pprint import pprint
 import win32gui
+import ctypes
 
 LINUX_HOST = "10.0.2.2"
 PORT = 34567
