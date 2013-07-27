@@ -2,3 +2,10 @@
 *.pyc
 .ropeproject/
 nohup.out
+/example/build/lib.win32-2.7/etHook/_example.pyd
+/example/build/temp.win32-2.7/Release/_example.def
+/example/build/temp.win32-2.7/Release/example.o
+/example/build/temp.win32-2.7/Release/example_wrap.o
+/example/example_wrap.c
+/example/build/lib.win32-2.7/etHook/__init__.py
+/example/build/lib.win32-2.7/etHook/example.py
