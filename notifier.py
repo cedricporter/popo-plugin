@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 # author:  Hua Liang [ Stupid ET ]
 # email:   et@everet.org
 # website: http://EverET.org
@@ -7,7 +7,7 @@
 
 import tornado.httpserver
 import tornado.ioloop
-import tornado.web 
+import tornado.web
 from gi.repository import Notify
 
 
@@ -20,13 +20,13 @@ class MainHandler(tornado.web.RequestHandler):
 
 settings = {
     'debug': True,
-    }
+}
 
 application = tornado.web.Application(
     [(r"/", MainHandler),
      ],
     **settings
-    )
+)
 
 
 if __name__ == "__main__":
@@ -34,5 +34,3 @@ if __name__ == "__main__":
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(34567)
     tornado.ioloop.IOLoop.instance().start()
-
-

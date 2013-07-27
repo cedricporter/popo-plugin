@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 
-from ctypes import *
+from ctypes import Structure, sizeof, windll, c_uint, byref
 import win32con
 
 __all__ = ['flash']
-
-FlashWindowEx = windll.user32.FlashWindowEx
 
 
 class FLASHWINFO(Structure):
@@ -18,15 +16,15 @@ class FLASHWINFO(Structure):
                 ('dwTimeout', c_uint)]
 
 
-def flash(hwnd):
+def flash_window(hwnd):
     '''Flash a window with caption and tray.'''
     info = FLASHWINFO(0, hwnd, win32con.FLASHW_ALL | win32con.FLASHW_TIMERNOFG, 0, 0)
     info.cbSize = sizeof(info)
-    FlashWindowEx(byref(info))
+    return windll.user32.FlashWindowEx(byref(info))
 
 
 def test():
-    flash(1049206)
+    print flash(459424)
 
 
 if __name__ == '__main__':
