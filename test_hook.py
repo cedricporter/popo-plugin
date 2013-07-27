@@ -3,30 +3,37 @@
 # Author: Hua Liang[Stupid ET] <et@everet.org>
 #
 
-import win32api
 
+import ctypes
+from ctypes import *
 import win32con
-
-from ctypes import windll
-
 import time
 
-x, y = 10, 10
+
+user32 = windll.user32
+
+hwnd = 590214
+
+HSHELL_REDRAW = 6
+WM_SHELL = 10
 
 
-#鼠标左键
-
-win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y)
-
-time.sleep(0.05)
-
-win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y)
+def SetWindowsHookEx(idHook, lpFunc, hMod, dwThreadId):
+    WINFUNC = ctypes.WINFUNCTYPE(ctypes.c_long, ctypes.c_long, ctypes.c_long, ctypes.c_long)
+    return ctypes.windll.user32.SetWindowsHookExA(idHook, WINFUNC(lpFunc), hMod, dwThreadId)
 
 
-#鼠标右键
+def UnhookWindowsHookEx(hhk):
+    return ctypes.windll.user32.UnhookWindowsHookEx(hhk)
 
-win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y)
 
-time.sleep(0.05)
+def my_callback(nCode, wParam, lParam):
+    print 'nCode', nCode, wParam, lParam
+    if nCode == HSHELL_REDRAW and lParam:
+        got_flashing_window_with_hwnd(wParam)
 
-win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, x, y)
+hook = SetWindowsHookEx(WM_SHELL, my_callback, None, 0)
+
+time.sleep(5)
+
+UnhookWindowsHookEx(hook)
