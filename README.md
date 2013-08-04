@@ -18,7 +18,7 @@ Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 
 4.修改win-notify.py文件，将LINUX_HOST后的ip地址改为你本机linux的ip地址。
 
-5.修改AutoHotKey.ahk里面的win-notify.py的路径。
+5.修改AutoHotKey.ahk里面的win-notify.py的路径，以及在team_white_list中添加您需要的组白名单。
 
 6.将AutoHotKey.ahk载入到AutoHotKey中，让AutoHotKey开机自动运行。
 
