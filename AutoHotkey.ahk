@@ -30,7 +30,7 @@ ShellEvent(wParam, lParam) {
 		
 		for i, element in team_white_list 
                 {
-			MsgBox, %win_title%, %win_class%, %element%
+		    ; MsgBox, %win_title%, %win_class%, %element%
 		    if (element = win_title) {
 			    run pythonw "Z:/popo-plugin/win-notify.py" "%win_title%"
 		    }
