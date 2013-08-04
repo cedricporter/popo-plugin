@@ -2,12 +2,6 @@
 # -*- coding: utf-8 -*-
 # Author: Hua Liang[Stupid ET] <et@everet.org>
 #
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# author:  Hua Liang [ Stupid ET ]
-# email:   et@everet.org
-# website: http://EverET.org
-#
 
 import httplib
 import urllib
