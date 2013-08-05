@@ -14,7 +14,7 @@ OnMessage(DllCall("RegisterWindowMessage", "str", "SHELLHOOK"), "ShellEvent")
 ShellEvent(wParam, lParam) {
     team_white_list := ["A平台服务部 - 兴趣组", "2013年7月web新人 - 兴趣组"]
 
-    ; if (wParam = 0x8006) ; HSHELL_FLASH
+    if (wParam = 0x8006) ; HSHELL_FLASH
     {   ; lParam contains the ID of the window which flashed:
 
 	WinGetTitle, win_title, ahk_id %lParam%
