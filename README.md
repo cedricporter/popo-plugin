@@ -3,9 +3,6 @@ popo-plugin
 
 Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 
-# 更新
-配合AutoHotKey使用，抛弃了以前的大部分方案。Windows部分主要由AutoHotKey处理。
-
 
 
 ## 使用方法
@@ -14,7 +11,7 @@ Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 
 2.在windows下安装python2.7，地址是http://www.python.org/ftp/python/2.7.5/python-2.7.5.msi。
 
-3.安装Dependency目录下的AutoHotKey.exe。
+3.安装Dependency目录下的AutoHotKey.exe。或者去官网下载最新的。
 
 4.修改win-notify.py文件，将LINUX_HOST后的ip地址改为你本机linux的ip地址。
 
@@ -25,3 +22,12 @@ Python实现的网易泡泡外挂，用于通知虚拟机外的Linux
 
 ## Tips
 Linux下的依赖项: libnotify, python-gobject
+
+
+## Change Log
+
+### 2013-12-13
+加上了静默时间，在制定时间内，提醒过的消息不再提醒。一是可以避免消息疯狂弹出，另外可以减少自己被打扰的频率。
+
+### 2013-08-04
+配合AutoHotKey使用，抛弃了以前的大部分方案。Windows部分主要由AutoHotKey处理。
